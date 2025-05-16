@@ -18,7 +18,7 @@ function NavSearch() {
       params.delete("search");
     }
     replace(`/products?${params.toString()}`);
-  }, 800); // delay search
+  }, 300); // delay search
 
   useEffect(() => {
     if (!searchParams.get("search")) {

@@ -15,7 +15,7 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
     <section>
       <BreadCrumbs name={product.name} />
       <div className='mt-6 grid gap-y-8 lg:grid-cols-2 lg:gap-x-16'>
-        {/* IMAGE FIRST COL */}
+        {/* Image section */}
         <div className='relative h-full'>
           <Image
             src={image}
@@ -26,7 +26,8 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
             className='w-full rounded-md object-cover'
           />
         </div>
-        {/* PRODUCT INFO SECOND COL */}
+
+        {/* Product info */}
         <div>
           <div className='flex gap-x-8 items-center'>
             <h1 className='capitalize text-3xl font-bold'>{name}</h1>
