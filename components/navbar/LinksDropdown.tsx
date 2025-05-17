@@ -20,8 +20,10 @@ const LinksDropdown = () => {
       <DropdownMenuTrigger asChild>
         <Button variant='outline' className='flex gap-4 max-w-[100px]'>
           <LuAlignLeft className='w-6 h-6' />
+          <UserIcon />
         </Button>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent className='w-40' align='start' sideOffset={10}>
         <SignedOut>
           <DropdownMenuItem>
@@ -36,9 +38,8 @@ const LinksDropdown = () => {
             </SignInButton>
           </DropdownMenuItem>
         </SignedOut>
-
         <SignedIn>
-          {links.map((link) => {
+          {/* {links.map((link) => {
             return (
               <DropdownMenuItem key={link.href}>
                 <Link href={link.href} className='capitalize w-full'>
@@ -46,7 +47,18 @@ const LinksDropdown = () => {
                 </Link>
               </DropdownMenuItem>
             );
-          })}
+          })} */}
+          {links.map(({ href, label, icon: Icon }) => (
+            <DropdownMenuItem key={href}>
+              <Link
+                href={href}
+                className='capitalize w-full flex items-center gap-2'
+              >
+                {Icon && <Icon className='text-lg' />}
+                {label}
+              </Link>
+            </DropdownMenuItem>
+          ))}
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <SignOutLink />
