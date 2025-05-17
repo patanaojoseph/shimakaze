@@ -1,4 +1,4 @@
-import React from "react";
+"use client";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,8 +13,15 @@ import { links } from "@/utils/links";
 import UserIcon from "./UserIcon";
 import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import SignOutLink from "./SignOutLink";
+// import { auth } from "@clerk/nextjs/server";
+import { useAuth } from "@clerk/nextjs";
 
 const LinksDropdown = () => {
+  // const { userId } = auth();
+  const { userId } = useAuth();
+  // const isAdmin = userId === process.env.ADMIN_USER_ID;
+  const isAdmin = userId === process.env.NEXT_PUBLIC_ADMIN_USER_ID;
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -33,13 +40,14 @@ const LinksDropdown = () => {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <SignInButton mode='modal'>
+            <SignUpButton mode='modal'>
               <button className='w-full text-left'>Register</button>
-            </SignInButton>
+            </SignUpButton>
           </DropdownMenuItem>
         </SignedOut>
         <SignedIn>
           {/* {links.map((link) => {
+            if (link.label === "dashboard" && !isAdmin) return null;
             return (
               <DropdownMenuItem key={link.href}>
                 <Link href={link.href} className='capitalize w-full'>
@@ -48,7 +56,7 @@ const LinksDropdown = () => {
               </DropdownMenuItem>
             );
           })} */}
-          {links.map(({ href, label, icon: Icon }) => (
+          {/* {links.map(({ href, label, icon: Icon }) => (
             <DropdownMenuItem key={href}>
               <Link
                 href={href}
@@ -58,7 +66,22 @@ const LinksDropdown = () => {
                 {label}
               </Link>
             </DropdownMenuItem>
-          ))}
+          ))} */}
+          {links.map(({ href, label, icon: Icon }) => {
+            if (label === "dashboard" && !isAdmin) return null;
+
+            return (
+              <DropdownMenuItem key={href}>
+                <Link
+                  href={href}
+                  className='capitalize w-full flex items-center gap-2'
+                >
+                  {Icon && <Icon className='text-lg' />}
+                  {label}
+                </Link>
+              </DropdownMenuItem>
+            );
+          })}
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <SignOutLink />

@@ -3,7 +3,7 @@
 import { useToast } from "@/hooks/use-toast";
 import { SignOutButton } from "@clerk/nextjs";
 import Link from "next/link";
-import { FaSignOutAlt } from "react-icons/fa";
+import { IoIosLogIn } from "react-icons/io";
 
 const SignOutLink = () => {
   const { toast } = useToast();
@@ -21,7 +21,7 @@ const SignOutLink = () => {
     <SignOutButton>
       <Link href='/' className='w-full text-left' onClick={handleLogout}>
         <div className='w-full flex items-center gap-2 text-left cursor-pointer'>
-          <FaSignOutAlt className='w-5 h-5' />
+          <IoIosLogIn className='w-5 h-5' />
           Signout
         </div>
       </Link>
