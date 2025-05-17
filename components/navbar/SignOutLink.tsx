@@ -22,7 +22,7 @@ const SignOutLink = () => {
       <Link href='/' className='w-full text-left' onClick={handleLogout}>
         <div className='w-full flex items-center gap-2 text-left cursor-pointer'>
           <IoIosLogIn className='w-5 h-5' />
-          Signout
+          Sign-out
         </div>
       </Link>
     </SignOutButton>
